@@ -14,7 +14,7 @@ int particiona(int *numbersToSort, int esq, int dir) {
 while(1) {
     while(numbersToSort[i] < pivo){ i++;}
     while(pivo < numbersToSort[j]) {j--;}
-    if(i >= j){ break};
+    if(i >= j){ break;};
     trocaPos(numbersToSort,i,j);
      i++; 
      j--;
@@ -33,28 +33,24 @@ void quicksort(int *numbersToSort, int esq, int dir) {
   quicksort(numbersToSort, pivo_indice, dir);
 }
 int main() {
-  FILE *arquivo = fopen("numbersToSort.txt", "r");
   int *numbersToSort = (int *)malloc(1000 * sizeof(int));
   int vectorSize = 0;
-  if (arquivo == NULL) {
-    printf("Erro ao abrir o arquivo.\n");
-    return 1;
-  }
+  
 
   int numero;
-  while (fscanf(arquivo, "%d", &numero) != EOF) {
-    printf("Número lido: %d\n", numero);
+  int i;
+  while (scanf("%d", &numero) != EOF) {
     numbersToSort[vectorSize] = numero;
     vectorSize++;
   }
 
   quicksort(numbersToSort, 0, vectorSize -1);
 
-  for (int i = 0; i < vectorSize; i++)
-    printf("%d ", numbersToSort[i]);
-  free(numbersToSort);
-
-  fclose(arquivo);
-
+  for (i = 0; i < vectorSize; i++){
+    printf("%d", numbersToSort[i]);
+    if(i!= vectorSize-1){
+      printf("\n");
+    }
+  }
   return 0;
 }
